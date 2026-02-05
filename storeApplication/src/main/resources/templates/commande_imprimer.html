@@ -1,0 +1,32 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <body>
+        <h1>Commande <span th:text="${commande.nom}"></span></h1>
+        <br>
+        <p>Client : <span th:text="${commande.client.nom}">Nom</span> <span th:text="${commande.client.prenom}">Prénom</span></p>
+        <br>
+        <table border="1" cellpadding="5" cellspacing="2" width="50%">
+            <thead>
+            <tr>
+                <th align="left">Libellé</th>
+                <th align="left">Quantité</th>
+                <th align="left">Prix unitaire</th>
+                <th align="left">Prix total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${commande.lignes}">
+                <td th:text="${l.libelle}"></td>
+                <td th:text="${l.quantite}"></td>
+                <td th:text="${l.prixUnitaire}"></td>
+                <td th:text="${l.prixTotalLigne}"></td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><b>Total commande</b></td>
+
+                <td th:text="${commande.prixTotalCommande}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <body>
+        <h1>Bonjour <span th:text="${client.prenom}"></span></h1>
+        <a href="/store/user">Toutes les commandes</a>
+        <br>
+        <h2>Commande <span th:text="${commande.nom}"></span></h2>
+        <h3>Lignes de commande</h3>
+        <a th:href="@{/store/commande/imprimer/{id}(id=${commande.id})}">IMPRIMER</a>
+        <ul>
+            <li th:each="l : ${commande.lignes}">
+                <span th:text="${l.libelle}"></span>
+                (Qté: <span th:text="${l.quantite}"></span>,
+                Prix: <span th:text="${l.prixUnitaire}"></span> €)
+                <a th:href="@{/store/deleteLigne(id=${l.id}, commandeId=${commande.id})}"> supprimer </a>
+            </li>
+        </ul>
+        <hr>
+        <h2>Ajout d'une ligne de commande</h2>
+        <form action="/store/createLigne" method="POST">
+            <input type="hidden" name="commandeId" th:value="${commande.id}">
+            <label>Libellé :</label>
+            <input type="text" name="libelle" required> <br>
+            <label>Quantité :</label>
+            <input type="number" name="quantite" required> <br>
+            <label>Prix Unitaire :</label>
+            <input type="number" step="any" name="prixUnitaire" required> <br>
+            <input type="submit" value="Ajouter la ligne">
+        </form>
+    </body>
+</html>

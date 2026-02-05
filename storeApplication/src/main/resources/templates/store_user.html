@@ -1,0 +1,22 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <body>
+        <h1>Bienvenue <span th:text="${client.prenom}"></span> !</h1>
+        <br>
+        <a href="/store/logout">Se déconnecter</a>
+        <br><br>
+        <h2>Mes Commandes</h2>
+        <ul>
+            <li th:each="c : ${client.commandes}">
+                <a th:href="@{/store/commande/{id}(id=${c.id})}">
+                    <span th:text="${c.nom}">Nom Commande</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <h2>Ajout d'une commande</h2>
+        <form action="/store/createCommande" method="POST">
+            Nom de la commande : <input name="nom">
+            <input type="submit" value="Ajouter">
+        </form>
+    </body>
+</html>
