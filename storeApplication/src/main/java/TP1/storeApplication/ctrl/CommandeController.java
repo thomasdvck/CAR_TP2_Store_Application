@@ -60,4 +60,16 @@ public class CommandeController {
         return new ModelAndView("commande_imprimer", Map.of("commande", commande));
     }
 
+    @PostMapping("/soumettreCommande")
+    public RedirectView soumettreCommande(@RequestParam Long commandeId, HttpSession session) {
+        Client clientConnecte = (Client) session.getAttribute("user");
+        if (clientConnecte == null) return new RedirectView("/store/home");
+        Commande commande = commandeService.getCommandeById(commandeId);
+        if (commande != null) {
+            String nomCmd = commande.getNom();
+            return new RedirectView("/store/user?valide=true&nom=" + nomCmd);
+        }
+        return new RedirectView("/store/user");
+    }
+
 }

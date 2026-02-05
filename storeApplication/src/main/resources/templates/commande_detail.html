@@ -26,5 +26,13 @@
             <input type="number" step="any" name="prixUnitaire" required> <br>
             <input type="submit" value="Ajouter la ligne">
         </form>
+        <div th:if="${not #lists.isEmpty(commande.lignes)}">
+            <hr>
+            <h2>Valider ma commande</h2>
+            <form action="/store/soumettreCommande" method="POST">
+                <input type="hidden" name="commandeId" th:value="${commande.id}">
+                <input type="submit" value="Confirmer la commande">
+            </form>
+        </div>
     </body>
 </html>

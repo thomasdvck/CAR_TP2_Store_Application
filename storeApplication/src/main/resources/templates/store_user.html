@@ -4,6 +4,10 @@
         <br>
         <a href="/store/logout">Se déconnecter</a>
         <br><br>
+        <h2 th:if="${param.valide}" style="color: green;">
+            Votre commande <span th:text="${param.nom}"></span> a bien été validée !
+        </h2>
+        <br><br>
         <h2>Mes Commandes</h2>
         <ul>
             <li th:each="c : ${client.commandes}">
