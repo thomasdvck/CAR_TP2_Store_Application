@@ -1,1 +1,1 @@
-## TP 1 de Thomas DEVINCK
+## TP 2 de Thomas DEVINCK (Partie StoreApplication)
